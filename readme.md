@@ -1,0 +1,151 @@
+//Constants:
+
+'generals'=>[
+    'success'=>'1',
+    'fill_all_fields'=>'-1',
+    'not_found'=>'-2',
+    'duplicated'=>'-3',
+    'operation_failed'=>'-4',
+    'invalid_type'=>'-5',
+],
+
+use "24291538135675" as token
+
+//-----------------------------------------------------------------
+Register New User
+Method: POST
+URL: https://marketable-bars.000webhostapp.com/api/users/register
+
+-- Body:
+    {"name":"string", "phone":"string", "password":"string", "image":"string", "city":int}
+        
+
+-- Response:
+{
+    {
+    "status": int,
+    "user": {
+        "user_id": int,
+        "name": "string",
+        "token": "string",
+        "image": "string",
+        "phone": "string",
+        "city": "string"
+    }
+}
+
+//--------------------------------------------------------
+Login
+Method: POST
+URL: https://marketable-bars.000webhostapp.com/api/users/login
+
+-- Body:
+    {"phone":"string", "password":"string"}
+        
+-- Response:
+{
+    {
+    "status": int,
+    "user": {
+        "user_id": int,
+        "name": "string",
+        "token": "string",
+        "image": "string",
+        "phone": "string",
+        "city": "string"
+    }
+}
+
+//---------------------------------------------------------
+//--------------------------------------------------
+get categories
+Method: GET
+URL: https://marketable-bars.000webhostapp.com/api/products/get_categories
+
+-- Response:
+{
+    "status": int,
+    "categories": [
+        {
+            "id": int,
+            "name": "string",
+            "icon": "string"
+        }
+    ]
+}
+
+//-------------------------------------------
+get units
+Method: GET
+URL: https://marketable-bars.000webhostapp.com/api/products/get_units
+
+-- Response:
+{
+    "status": int,
+    "units": [
+        {
+            "id": int,
+            "name": "string"
+        }
+    ]
+}
+
+//---------------------------------------
+
+Add new Product
+Method: POST
+URL: https://marketable-bars.000webhostapp.com/api/products/add_product
+
+-- Body: 
+	{
+		"name":"string", "description":"string", "price":double, 
+		"unit":int, "image":"string", "token":"string", "category":int
+	}
+
+-- Response:
+{
+    "status": int
+}
+
+//--------------------------------------------
+Single Product with its comments
+Method: POST
+URL: https://marketable-bars.000webhostapp.com/api/products/single_product
+
+-- Body:
+	{"id":int}
+
+-- Response:
+{
+    "status": int,
+    "product": {
+        "user_phone": "string",
+        "user_email": "string",
+        "user_name": "string"
+    },
+    "comments": [
+        {
+            "comment_id": int,
+            "content": "string",
+            "created_at": 1503495755,  //in milliseconds
+            "user_id": int,
+            "user_name": "string",
+            "user_image": "path"
+        }, { ... }
+    ]
+}
+
+//-----------------------------------------------
+Comment on product
+
+Method: POST
+URL: https://marketable-bars.000webhostapp.com/api/products/comment
+-- Body: 
+	{"token":"string", "product_id":int, "content":string}
+
+-- Response:
+	{"status": int}
+
+
+
+//----------------------------------------------------
